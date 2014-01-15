@@ -5,7 +5,8 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @user = current_user
-    @todos = @user.todos  
+    @todos = @user.todos
+   
   end
 
   # GET /todos/1
@@ -50,6 +51,17 @@ class TodosController < ApplicationController
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST / todos
+  # MARK AS COMPLETED
+ def complete
+    params[:todos_checkbox].each do |check|
+       todo_id = check
+       t = Todo.find_by_id(todo_id)
+       t.update_attribute(:completed, true)
+     end
+    redirect_to :action => 'index'
   end
 
   # DELETE /todos/1

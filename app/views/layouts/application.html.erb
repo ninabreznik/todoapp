@@ -2,16 +2,9 @@
 <html>
 <head>
   <title>ScaffoldingTodo</title>
-  <%= stylesheet_link_tag    "application", media: "all",                         "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", 
-                             "data-turbolinks-track" => true %>
+ <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-  <ul class="nav">
-    <li class="active">
-      <a href="/ideas">Ideas</a>
-    </li>
-  </ul>
 
   <p class="navbar-text pull-right">
     <% if user_signed_in? %>
@@ -36,6 +29,7 @@
     <% end %>
 </head>
 <body>
+  <div class="center">
   <% if notice %>
     <p class="alert alert-notice">
       <%= notice %>
@@ -48,6 +42,6 @@
   <% end %>
 
 <%= yield %>
-
+</div>
 </body>
 </html>
